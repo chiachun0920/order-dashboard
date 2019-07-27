@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <Panel>
+      <Panel title="title">
         <OrderList list={orders} />
       </Panel>
     </div>
