@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Panel, OrderList } from './components';
+import mockOrders from './mocks/orders.json';
 
 function App() {
+  const [ orders, setOrders ] = useState([]);
+
+  useEffect(() => {
+    setOrders(mockOrders.orders);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Panel>
+        <OrderList list={orders} />
+      </Panel>
     </div>
   );
 }
