@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import moment from 'moment';
+import { formatTWDateString } from '../utilities/date';
 import { getAssetsPath } from '../utilities/assets';
 import { getProgress } from '../utilities/order';
 import * as ASSET_TYPE from '../constants/assetType';
@@ -20,7 +20,7 @@ const OrderItem = props => {
       <div className="content">
         <div className="description">
           <div className={classNames('status', isInProgress ? 'inprogress' : 'done')}>{item.status}</div>
-          {isInProgress && <div className="date">預計出貨：{moment(item.date).format('YYYY-MM-DD')}</div>}
+          {isInProgress && <div className="date">預計出貨：{formatTWDateString(item.date)}</div>}
         </div>
         <div className="name">{item.name}</div>
       </div>
