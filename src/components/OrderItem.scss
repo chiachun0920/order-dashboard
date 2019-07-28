@@ -4,8 +4,13 @@
   align-items: center;
   padding: 20px;
   border: 1px solid #E6E5E5;
+  background-color: #ffffff;
   border-top: none;
-
+  transition: background-color 0.2s linear;
+  &:hover {
+    background-color: #dddddd;
+    cursor: pointer;
+  }
   .logo {
     width: 50px;
     height: 50px;
