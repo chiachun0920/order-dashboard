@@ -15,6 +15,7 @@ function App() {
         // do something error handle stuff
         return;
       }
+      orders.orders.sort((a, b) => a.date >= b.date ? -1 : 1);
       setOrders(orders.orders);
     };
     fetchData();
