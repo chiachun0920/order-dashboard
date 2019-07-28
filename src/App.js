@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Panel, OrderList } from './components';
+import * as ORDER from './constants/order';
 import mockOrders from './mocks/orders.json';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <Panel title="title">
+      <Panel title={ORDER.INPROGRESS}>
         <OrderList list={orders} />
       </Panel>
     </div>
