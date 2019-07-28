@@ -4,14 +4,14 @@ import moment from 'moment';
 import { getAssetsPath } from '../utilities/assets';
 import { getProgress } from '../utilities/order';
 import * as ASSET_TYPE from '../constants/assetType';
-import * as ORDER_STATUS from '../constants/orderStatus';
+import * as ORDER from '../constants/order';
 
 import './OrderItem.scss';
 
 const OrderItem = props => {
   const { item } = props;
 
-  const isInProgress = getProgress(item.status) === ORDER_STATUS.INPROGRESS;
+  const isInProgress = getProgress(item.status) === ORDER.INPROGRESS;
   const logo = isInProgress ? 'treemall' : 'treemall_dark';
 
   return (
