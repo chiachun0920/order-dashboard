@@ -1,35 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Panel, OrderList } from './components';
 import * as ORDER from './constants/order';
 import { getProgress } from './utilities/order';
-import to from './utilities/to';
-import { getOrders } from './streams/order';
+import { useOrders } from './hooks/useOrders';
 
 function App() {
-  const [ orders, setOrders ] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let [ err, orders ] = await to(getOrders());
-      if (err) {
-        // do something error handle stuff
-        return;
-      }
-      orders.orders.sort((a, b) => a.date >= b.date ? -1 : 1);
-      setOrders(orders.orders);
-    };
-    fetchData();
-  }, []);
+  const { orders, isLoading } = useOrders();
   const inProgressOrders = orders.filter(item => getProgress(item.status) === ORDER.INPROGRESS);
   const doneOrders = orders.filter(item => getProgress(item.status) === ORDER.DONE);
   return (
     <div className="App">
-      <Panel title={ORDER.INPROGRESS}>
-        <OrderList list={inProgressOrders} />
-      </Panel>
-      <Panel title={ORDER.DONE}>
-        <OrderList list={doneOrders} />
-      </Panel>
+      {isLoading ? 'loading...' : (
+        <React.Fragment>
+          <Panel title={ORDER.INPROGRESS}>
+            <OrderList list={inProgressOrders} />
+          </Panel>
+          <Panel title={ORDER.DONE}>
+            <OrderList list={doneOrders} />
+          </Panel>
+        </React.Fragment>
+      )}
     </div>
   );
 }
